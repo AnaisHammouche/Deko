@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/catalogue.dart';
+// import 'package:arkit_plugin/arkit_plugin.dart';
+// import 'package:vector_math/vector_math_64.dart';
 
 // import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 // import 'package:vector_math/vector_math_64.dart' as vectore;
@@ -7,11 +10,10 @@ import 'package:flutter/material.dart';
 // import 'package:gallery/demos/material/material_demo_types.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
 
   get backgroundImage => null;
 
@@ -19,14 +21,27 @@ class MyApp extends StatelessWidget {
 
   get style => null;
 
-  // This widget is the root of your application.
+// This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'DEKO N CO',
-        // routes: {
-        // '/myCatalogue': (BuildContext context) => const MyCatalogue(),},
-        home: Scaffold(
+      home: HomePage(),
+      routes: {
+          MyCatalogue.tag: (context) => MyCatalogue('CATALOGUE'), 
+        },
+      );
+  }
+}
+
+
+
+  class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+    @override
+  Widget build(BuildContext context) {
+    
+    return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
               actions: <Widget>[
@@ -50,6 +65,7 @@ class MyApp extends StatelessWidget {
               title: Image.asset('assets/DekoLogo.png', height: 78),
             ),
             body: Container(
+              
               height: double.infinity,
               width: double.infinity,
               decoration: const BoxDecoration(
@@ -58,23 +74,21 @@ class MyApp extends StatelessWidget {
                         AssetImage("assets/spacejoy-IH7wPsjwomc-unsplash.jpg"),
                     fit: BoxFit.cover),
               ),
-              //   child: const Image (
-              //   image: AssetImage("assets/DekoLogoTest.jpg"),
-
-              // ))
-              child: const Text(''),
             ),
             floatingActionButton: FloatingActionButton.extended(
               icon: const Icon(Icons.arrow_forward_rounded),
               backgroundColor: Colors.green.shade800,
               onPressed: () {
-                // Navigator.of(context).pushNamed('/myCatalogue');
-                // Add your onPressed code here!
+                Navigator.of(context).pushNamed(MyCatalogue.tag);
               },
               label: const Text('Catalogue'),
-            )));
+            ));
   }
-}
+        
+        
+  }
+
+
 
 // class MyCatalogue extends StatelessWidget {
 //   const MyCatalogue({Key? key}) : super(key: key);
@@ -149,5 +163,36 @@ class MyApp extends StatelessWidget {
 //       body: ArCoreView(onArCoreViewCreated: _onArCoreViewCreated,
 //       enableUpdateListener: true,),
 //     );
+//   }
+// }
+
+// void main() => runApp(const MaterialApp(home: MyApp()));
+
+// class MyApp extends StatefulWidget {
+//   const MyApp({Key? key}) : super(key: key);
+
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   late ARKitController arkitController;
+
+//   @override
+//   void dispose() {
+//     arkitController.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) => Scaffold(
+//       appBar: AppBar(title: const Text('ARKit in Flutter')),
+//       body: ARKitSceneView(onARKitViewCreated: onARKitViewCreated));
+
+//   void onARKitViewCreated(ARKitController arkitController) {
+//     this.arkitController = arkitController;
+//     final node = ARKitNode(
+//         geometry: ARKitSphere(radius: 0.1), position: Vector3(0, 0, -0.5));
+//     this.arkitController.add(node);
 //   }
 // }

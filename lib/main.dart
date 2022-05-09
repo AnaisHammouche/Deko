@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/catalogue.dart';
+import 'package:flutter_application_1/favoris.dart';
 // import 'package:arkit_plugin/arkit_plugin.dart';
 // import 'package:vector_math/vector_math_64.dart';
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: HomePage(),
       routes: {
-          MyCatalogue.tag: (context) => MyCatalogue('CATALOGUE'), 
+          MyCatalogue.tag: (context) => MyCatalogue('CATALOGUE'),
+          Myfavoris.tag: (context) => Myfavoris('FAVORIS') ,
         },
       );
   }
@@ -48,7 +50,9 @@ class MyApp extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.favorite),
                   color: Colors.red,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(Myfavoris.tag);
+                  },
                 ),
                 IconButton(
                   icon: const Icon(Icons.search),
